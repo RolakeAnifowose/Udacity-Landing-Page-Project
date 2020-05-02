@@ -34,7 +34,9 @@
 */
 
 // Build the nav
-let navbar__items = ["Section 1", "Section 2", "Section 3", "Footer"];
+let navbar__items = ["Section 1", "Section 2", "Section 3", "Section 4"];
+
+const section = document.getElementsByTagName('section');
 
 let container = document.getElementById("navbar__list");
 
@@ -51,8 +53,15 @@ function createNavigationMenu() {
             anchor.href = "";
             anchor.innerText = navbar__items[i];
 
-            let item = document.createElement("li");
+            //Scroll to section
+            anchor.addEventListener("click", () => { 
+                event.preventDefault();
+                section[i].scrollIntoView({ behavior: "smooth" });
+                anchor[i].style.color = 'red';
+            });
 
+            let item = document.createElement("li");
+            
             let itemValue = document.createTextNode(navbar__items[i]);
             
             item.appendChild(anchor);
@@ -63,35 +72,19 @@ function createNavigationMenu() {
 }
 
 // Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-function scrollToClick() {
-    let navbar = document.getElementById("navbar__list");
-    navbar.addEventListener('click', function (event) {
-        const clicked = document.querySelector('#' + event.target.dataset.nav)
-        clicked.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-       
-    }); console.log("Hey")
+const isInViewport = function (element) {
+    const rect = element.getBoundingClientRect(),
+        viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+    return !(rect.bottom < 0 || rect.top > viewHeight);
 };
 
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click
-document.getElementById("navbar__list").addEventListener("click", function(e) {
-	if(e.target && e.target.nodeName == "LI") {
-        const click = document.querySelector('#' + event.target.dataset.nav)
-        click.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-		console.log("List item");
-    }
-});
-
 // Set sections as active
-
-
+function makeActiveSection() {
+    for (let i = 0; i < section.length; i++) {
+        if(isInViewport(section[i])){
+            section[i].classList.add('your-active-class');
+        } else {
+            section[i].classList.remove('your-active-class');
+        }
+    }
+}
