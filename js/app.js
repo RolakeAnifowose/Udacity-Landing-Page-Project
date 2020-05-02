@@ -44,7 +44,7 @@ function createNavigationMenu() {
     let itemsLength = navbar__items.length;
 
     if(itemsLength>0) {
-        let myList = document.createElement("ul");
+        let myList = document.getElementById('navbar__list');
 
         myList.className = "navbar__list";
 
@@ -57,7 +57,7 @@ function createNavigationMenu() {
             anchor.addEventListener("click", () => { 
                 event.preventDefault();
                 section[i].scrollIntoView({ behavior: "smooth" });
-                anchor[i].style.color = 'red';
+                anchor.style.color = 'red';
             });
 
             let item = document.createElement("li");
