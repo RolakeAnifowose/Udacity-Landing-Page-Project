@@ -11,3 +11,6 @@ The starter project has some HTML and CSS styling to display a static version of
 To get started, open `js/app.js` and start building out the app's functionality
 
 For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+
+## Description
+The project aims to check one's understanding of JavaScript and DOM manipulation. A navigation menu is created dynamically with JavaScript. When an item in the nav menu is clicked, the link scrolls to the appropriate section.
